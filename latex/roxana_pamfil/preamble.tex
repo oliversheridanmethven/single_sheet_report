@@ -1,0 +1,197 @@
+\usepackage{amsmath} % Nice maths symbols.
+\usepackage{amssymb} % Nice variable symbols.
+\usepackage[english]{babel}
+\usepackage{bbm} % Gives Blackboard fonts.
+\usepackage[math]{blindtext}
+\usepackage{enumitem} % Nice listing options in itemize and enumerate.
+\usepackage{fancyhdr}
+\usepackage{float} % Nice figure placement.
+\usepackage[T1]{fontenc} % Nice range of text characters and accents.
+\usepackage{graphicx} \graphicspath{{../.././figures/}{../.././figures/logos/}}
+\usepackage[geometry]{ifsym} % Useful symbols.
+\usepackage{ifthen}
+\usepackage{letltxmacro} % For defining a nice SQRT symbol.
+\usepackage{lipsum}
+\usepackage{listings} % The listings package for code.
+\usepackage{mathtools} % Gives the colon equals symbol.
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode} % Inports Listings package ideal for MATLAB.
+\usepackage{multirow} % Nice table cells spanning many rows.
+\usepackage{multicol} % If I want to use multiple columns.
+\usepackage[numbers, sort&compress]{natbib} % Nice references.
+\usepackage{sansmath} % Gives a changing math font. %% Must be before newpxtext/newpxmath ! %%
+\usepackage{newpxtext} % Gives Palatino and Helvetica fonts.
+\usepackage{newpxmath} % Gives Palatino and Helvetica fonts in maths. 
+\usepackage{bm} % Bold math symbols. %% Needs to be loaded after newpxtext/math. %%
+\usepackage[super]{nth} % Gives nice ordinal superscripts, eg 1st, 2nd, etc.
+\usepackage{parskip} % Gives nicer indenting.
+\usepackage{physics} % Nice partial derivatives and BRAKET notation.
+\usepackage{ragged2e}
+\usepackage{romannum} % Nice typing for roman numerals.
+\usepackage{setspace} % Ideal for increasing line spacing. E.g.  \doublespacing
+\usepackage{sidecap} \sidecaptionvpos{figure}{t}
+\usepackage{siunitx} % Nice formating of units.
+\usepackage{subcaption} % Side by side figures.
+\usepackage{tikz} % Nice diagrams.
+\usepackage{titling} % Access title variables. 
+\usepackage{titlesec} % Nice section title colouring options.
+\usepackage{todonotes}
+\usepackage{wrapfig}
+\usepackage{xcolor} % This is useful for making greyed table cells, nice for headers. Known preamble placement issues.
+\usepackage{xparse} 
+\usepackage{xspace} % Gives nice spacing for commands.
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black,anchorcolor=black]{hyperref} % Colour links.
+%%%% Should be loaded after hyperref. %%%%
+\usepackage{cleveref} % Gives smart referencing. %% After Hyperref
+\usepackage[margin=10pt,font=small, textfont=bf,labelfont=bf,labelsep=endash]{caption} % Caption figures and tables nicely. %% After cleveref.
+\newlength{\innermarginonesided}
+\setlength\innermarginonesided{40mm}
+\newlength{\outermarginonesided}
+\setlength\outermarginonesided{15mm}
+\newlength{\margindifference}
+\setlength\margindifference{\innermarginonesided-\outermarginonesided}
+\usepackage[top=20mm, bottom=20mm, left=\innermarginonesided, right=\outermarginonesided]{geometry}
+\usepackage{cleveref} % Gives smart referencing. %% After Hyperref
+
+% Making an index. 
+\makeindex
+
+% Present the references in the order they are used.
+\bibliographystyle{unsrtnat}
+% Reduce spacing between references. 
+\setlength{\bibsep}{0pt plus 0.3ex}
+
+% Listing -> Code in environment labels.
+\renewcommand{\lstlistingname}{Code}
+\crefname{listing}{code}{codes}
+\Crefname{listing}{Code}{Codes}
+\lstset{
+    numbers=left, 
+    basicstyle=\ttfamily\footnotesize,
+    frame=single, % adds a frame around the code
+    xleftmargin=20.4pt,
+    xrightmargin=3.4pt,
+    %	numbersep=3mm,
+}
+\newfloat{lstfloat}{htbp}{lop} % environment for placing lisings in to make them float. 
+
+\renewcommand{\bibname}{References}
+
+% Gives the nice SQRT symbol.
+\makeatletter
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+    \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+    \advance\dimen0-0.2\ht0
+    \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+    {\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}
+\makeatother
+
+% Removes most hyphenation.
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1.5em}
+
+% To change the spacing in lists:
+%\setlist{noitemsep} % or \setlist{noitemsep} to leave space around whole list
+% or
+\setenumerate{itemsep=-0.2em,topsep=0.5em} % Seems to look nice.
+
+% Custom column widths using C{2cm}, L, R, etc.
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Nice spacing in the first row of a table
+\newcommand{\firstrowspacing}{\rule{0pt}{2.6ex}}
+% For a more open look in tables.
+\setlength\extrarowheight{3pt}
+
+% Gives a nice quote environment.
+\NewDocumentEnvironment{myquote}{O{}}{%
+    \begin{center}
+        \begin{minipage}{0.85\linewidth}
+            \vspace{1ex}
+            \centering \itshape \justifying}
+        {%
+            \ifthenelse{\isempty{#1}}{}{
+                \begin{flushright}%The author/source.
+                    \normalfont #1
+            \end{flushright}}
+            \vspace{1ex}
+        \end{minipage}
+    \end{center}
+}
+
+
+% Ensures the SI command detects the local environment (e.g. in captions).
+\sisetup{detect-weight=true, detect-family=true}
+
+
+\newboolean{myfaceset} 
+\setboolean{myfaceset}{false}   
+
+\newcommand{\myfacepath}{}
+\makeatletter
+\newcommand{\myface}[1]{%
+    \renewcommand{\myfacepath}{#1}%
+    \setboolean{myfaceset}{true}%
+}
+\makeatother
+
+
+
+\fancyhead[LO]{%
+    \noindent
+    %\hspace*{-\innermarginonesided}
+    \begin{wrapfigure}{l}{\innermarginonesided}
+        \vspace*{-0.02\paperheight}
+        \hspace*{-2.2\outermarginonesided}
+        \includegraphics[width=\linewidth]{side_banner}\\
+        \hspace*{-2.2\outermarginonesided}
+        \includegraphics[width=0.91\linewidth]{epsrc_logo}
+        %\end{minipage}
+    \end{wrapfigure}
+}
+\renewcommand*{\headrulewidth}{0pt}%
+\cfoot{}
+
+
+\definecolor{oxfordblue}{RGB}{0, 33, 71}
+\newlength{\headerlogoheight}
+\setlength{\headerlogoheight}{0.1\paperheight}
+\renewcommand{\maketitle}{%
+    \pagestyle{fancy}
+    \begin{flushright}%
+        \includegraphics[height=\headerlogoheight]{infomm_logo_blue}%
+        \hspace{0.03\paperwidth}%
+        \includegraphics[height=\headerlogoheight]{oxford_logo_blue}%
+    \end{flushright}%
+    {\hfill  \Huge \textsc{\textbf{\thetitle}} \hfill }
+    \par%
+    \vspace{0.2\headerlogoheight}
+    \begin{wrapfigure}{l}{0.3\linewidth}%
+        \vspace{-1.4\baselineskip}
+        \begin{minipage}[t][0mm][t]{\linewidth}
+            \noindent
+            \centering
+            \ifthenelse{\boolean{myfaceset}}{ \includegraphics[width=\linewidth]{\myfacepath}}%
+            {\missingfigure[figwidth=\linewidth]{}}{}\\%
+            \ifthenelse{\boolean{myfaceset}}{\large\textsc{\textbf{\color{oxfordblue}\theauthor}}}{Specifcy where to find your picture using \texttt{\textbackslash{}myface\{\}}. \\ \vspace{1\baselineskip}
+                \textbf{\theauthor}}
+        \end{minipage}%
+        \vspace*{1\baselineskip}
+    \end{wrapfigure}%
+    \par%
+}
+
+
+\titleformat{\section}
+{\color{oxfordblue}\normalfont\fontsize{16}{20}\selectfont\bfseries}
+{}{0em}{}
+\titlespacing\section{0pt}{8pt plus 4pt minus 2pt}{8pt plus 5pt minus 5pt}
