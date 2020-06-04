@@ -2,7 +2,7 @@
 
 ## Author
 
-Oliver Sheridan-Methven, June 2020. 
+Oliver Sheridan-Methven, June 2020.  
 [oliver.sheridan-methven@maths.ox.ac.uk](mailto:oliver.sheridan-methven@maths.ox.ac.uk)
 
 ## Description
