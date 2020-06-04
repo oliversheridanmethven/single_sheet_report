@@ -167,25 +167,40 @@
 \setlength{\headerlogoheight}{0.1\paperheight}
 \renewcommand{\maketitle}{%
     \pagestyle{fancy}
-    \begin{flushright}%
+    \vspace*{-2cm}
+        \begin{minipage}[t][\headerlogoheight]{\linewidth}
+        \begin{flushright}%
         \includegraphics[height=\headerlogoheight]{infomm_logo_blue}%
-        \hspace{0.03\paperwidth}%
-        \includegraphics[height=\headerlogoheight]{oxford_logo_blue}%
+    \hspace{0.03\paperwidth}%
+    \includegraphics[height=\headerlogoheight]{oxford_logo_blue}%
     \end{flushright}%
-    {\hfill  \Huge \textsc{\textbf{\thetitle}} \hfill }
+    \end{minipage}
+    \par 
+    \begin{minipage}[t]{\linewidth}
+    \centering \Huge \textsc{\textbf{\thetitle}}
+    \end{minipage}
     \par%
     \vspace{0.2\headerlogoheight}
     \begin{wrapfigure}{l}{0.3\linewidth}%
         \vspace{-1.4\baselineskip}
-        \begin{minipage}[t][0mm][t]{\linewidth}
+        \begin{minipage}[t]{\linewidth}%[t][0mm][t]{\linewidth}
             \noindent
             \centering
-            \ifthenelse{\boolean{myfaceset}}{ \includegraphics[width=\linewidth]{\myfacepath}}%
-            {\missingfigure[figwidth=\linewidth]{}}{}\\%
-            \ifthenelse{\boolean{myfaceset}}{\large\textsc{\textbf{\color{oxfordblue}\theauthor}}}{Specifcy where to find your picture using \texttt{\textbackslash{}myface\{\}}. \\ \vspace{1\baselineskip}
-                \textbf{\theauthor}}
+            \ifthenelse{\boolean{myfaceset}}{%
+             \includegraphics[width=\linewidth]{\myfacepath}%
+             }{%
+             \begin{minipage}[t][2\headerlogoheight]{\linewidth}
+             \missingfigure[figwidth=\linewidth]{}
+             \end{minipage}
+             }
+             \begin{minipage}[t]{\linewidth}
+             \centering
+             \large
+             \ifthenelse{\boolean{myfaceset}}{}{Specifcy where to find your picture using \texttt{\textbackslash{}myface\{\}}\\}
+             \textsc{\textbf{\color{oxfordblue}\theauthor}}
+             \end{minipage}   
         \end{minipage}%
-        \vspace*{1\baselineskip}
+        \vspace{-1.4\baselineskip}
     \end{wrapfigure}%
     \par%
 }
