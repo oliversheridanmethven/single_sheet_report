@@ -9,6 +9,9 @@ Oliver Sheridan-Methven, June 2020.
 
 An abridged version of the InFoMM lay report designed to fit on a single sheet of A4. 
 
+For the full lay report template see:  
+https://github.com/oliversheridanmethven/lay_report
+
 ## Usage
 
 Copy the MWE example folder and then type in your lay report. Only modify the mwe.tex file. Starting the report should be as:
