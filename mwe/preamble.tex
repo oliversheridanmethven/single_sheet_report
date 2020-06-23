@@ -119,10 +119,13 @@
             \vspace{1ex}
             \centering \itshape \justifying}
         {%
-            \ifthenelse{\isempty{#1}}{}{
-                \begin{flushright}%The author/source.
-                    \normalfont #1
-            \end{flushright}}
+			\ifx#1
+		        % If empty do nothing
+		    \else
+			    \begin{flushright}%The author/source.
+				    \normalfont --#1
+			    \end{flushright}
+		    \fi
             \vspace{1ex}
         \end{minipage}
     \end{center}
